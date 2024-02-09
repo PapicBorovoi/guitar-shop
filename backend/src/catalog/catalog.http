@@ -1,0 +1,47 @@
+POST  http://localhost:3000/catalog/create HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzVjZmZiMmE0MGQ5NjI3YTNlZTNjYyIsImVtYWlsIjoiYm9ic0BnbWFpbC5jb20iLCJuYW1lIjoiYm9vYm9iIiwiaWF0IjoxNzA3NDYyNjUxLCJleHAiOjE3MDc1NDkwNTF9.bufzoFYhxPuhmCkMOfhaixYWptUzf1cf4yTUFKDH7kE
+Content-Type: application/json
+
+{
+    "name": "guitar ele",
+    "description": "a musical instrument",
+    "price": 1000000,
+    "imageUrl": "https://www.google.com",
+    "createdAt": "2022", 
+    "type": "acoustic",
+    "vendorCode": "23fdkldd",
+    "numberOfStrings": 12
+}
+
+###
+
+DELETE http://localhost:3000/catalog/23fdfsf HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzRiNzY5ZTgxY2MwMzdmZTQ3NWUyZSIsImVtYWlsIjoiYm9iQGdtYWlsLmNvbSIsIm5hbWUiOiJib29ib2IiLCJpYXQiOjE3MDczOTA4MjUsImV4cCI6MTcwNzQ3NzIyNX0.AlIsBVaFbA7ZEI9VKq7-FW4Sdxi3LRAYBC-KVV_R9IE
+
+
+###
+
+GET http://localhost:3000/catalog/23fdfsf HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzRiNzY5ZTgxY2MwMzdmZTQ3NWUyZSIsImVtYWlsIjoiYm9iQGdtYWlsLmNvbSIsIm5hbWUiOiJib29ib2IiLCJpYXQiOjE3MDczOTA4MjUsImV4cCI6MTcwNzQ3NzIyNX0.AlIsBVaFbA7ZEI9VKq7-FW4Sdxi3LRAYBC-KVV_R9IE
+
+###
+
+GET http://localhost:3000/catalog/list/?page=0&limit=7&sortType=createdAt&sortDirection=desc HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzRiNzY5ZTgxY2MwMzdmZTQ3NWUyZSIsImVtYWlsIjoiYm9iQGdtYWlsLmNvbSIsIm5hbWUiOiJib29ib2IiLCJpYXQiOjE3MDczOTA4MjUsImV4cCI6MTcwNzQ3NzIyNX0.AlIsBVaFbA7ZEI9VKq7-FW4Sdxi3LRAYBC-KVV_R9IE
+
+###
+
+PATCH http://localhost:3000/catalog/23fdkld HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzVjZmZiMmE0MGQ5NjI3YTNlZTNjYyIsImVtYWlsIjoiYm9ic0BnbWFpbC5jb20iLCJuYW1lIjoiYm9vYm9iIiwiaWF0IjoxNzA3NDc1MzA3LCJleHAiOjE3MDc1NjE3MDd9.m_RJgrH7ymqHUNtLzbYwuO5KsSpB6Ra01Y9qvrqA7H0
+Content-Type: application/json
+
+{
+    "name": "guitar ele updated",
+    "description": "a musical instrument ----",
+    "price": 1000,
+    "imageUrl": "https://www.google.com",
+    "createdAt": "2021", 
+    "type": "ukulele",
+    "vendorCode": "22fdmd",
+    "numberOfStrings": 6
+}

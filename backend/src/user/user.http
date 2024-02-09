@@ -2,9 +2,9 @@ POST http://localhost:3000/user/register HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "bob@gmail.com",
+    "email": "bobss@gmail.com",
     "password": "password",
-    "name": "bob"
+    "name": "boobob"
 }
 
 ###
@@ -13,6 +13,11 @@ POST http://localhost:3000/user/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "bob@gmail.com",
+    "email": "bobs@gmail.com",
     "password": "password"
 }
+
+###
+
+GET http://localhost:3000/user/check HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzRiNzY5ZTgxY2MwMzdmZTQ3NWUyZSIsImVtYWlsIjoiYm9iQGdtYWlsLmNvbSIsIm5hbWUiOiJib29ib2IiLCJpYXQiOjE3MDczOTA4MjUsImV4cCI6MTcwNzQ3NzIyNX0.AlIsBVaFbA7ZEI9VKq7-FW4Sdxi3LRAYBC-KVV_R9IE

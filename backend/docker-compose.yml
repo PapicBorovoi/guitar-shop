@@ -33,5 +33,44 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_PASSWORD}
       ME_CONFIG_MONGODB_URL: mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@guitar.user.mongo:27017/
 
+  guitar.blog.postgres:
+    image: postgres:14-alpine
+    container_name: guitar.blog.postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - 5432:5432
+    volumes:
+      - guitar.postgres.blog:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - guitar.blog
+
+  guitar.blog.pgadmin:
+    image: dpage/pgadmin4
+    container_name: guitar.blog.pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - 8083:80
+    depends_on:
+      - guitar.blog.postgres
+    networks:
+      - guitar.blog
+
+networks:
+  guitar.blog:
+    driver: bridge
+
 volumes:
   guitar.mongo.user:
+  guitar.postgres.blog:

@@ -3,7 +3,7 @@ import { genSalt, hash, compare } from 'bcrypt';
 import { SALT_ROUNDS } from './user.constant';
 
 export class UserEntity implements AuthUser {
-  id?: number;
+  id?: string;
   name: string;
   email: string;
   passwordHash: string;

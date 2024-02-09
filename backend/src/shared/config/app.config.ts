@@ -14,6 +14,10 @@ export interface AppConfig {
     port: number;
     authSource: string;
   };
+  jwt: {
+    accessTokenSecret: string;
+    accessTokenExpiresIn: string;
+  };
 }
 
 const validationSchema = Joi.object({
@@ -26,6 +30,10 @@ const validationSchema = Joi.object({
     host: Joi.string().required(),
     port: Joi.number().port().required(),
     authSource: Joi.string().required(),
+  }).required(),
+  jwt: Joi.object({
+    accessTokenSecret: Joi.string().required(),
+    accessTokenExpiresIn: Joi.string().required(),
   }).required(),
 });
 
@@ -47,6 +55,10 @@ const getConfig = (): AppConfig => {
       host: process.env.MONGODB_HOST,
       port: parseInt(process.env.MONGODB_PORT, 10),
       authSource: process.env.MONGODB_AUTH_SOURCE,
+    },
+    jwt: {
+      accessTokenSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
+      accessTokenExpiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRES_IN,
     },
   };
 
