@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+*/node_modules
 /.pnp
 .pnp.js
 
@@ -9,11 +9,11 @@
 /coverage
 
 # production
-/dist
+*/dist
 # misc
 Thumbs.db
-.DS_Store
-.env
+*.DS_Store
+*.env
 *.log*
 
 npm-debug.log*
@@ -24,3 +24,4 @@ yarn-error.log*
 .idea
 *.sublime*
 .vscode
+.DS_Store
