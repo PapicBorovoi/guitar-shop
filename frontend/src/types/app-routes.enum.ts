@@ -1,9 +1,9 @@
 export enum AppRoutes {
   Card = '/card',
-  Catalog = '/',
+  List = '/list',
   Create = '/create',
   Redact = '/redact',
   NotFound = '/404',
-  Login = '/login',
+  Login = '/',
   Register = '/register',
 }

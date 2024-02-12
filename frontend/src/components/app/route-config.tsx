@@ -1,7 +1,14 @@
 import { RouteObject } from 'react-router-dom';
 import { AppRoutes } from '../../types/app-routes.enum';
 import Layout from '../layout/layout';
-import CatalogPage from '../../pages/catalog/catalog-page';
+import ListPage from '../../pages/list/list-page';
+import LoginPage from '../../pages/login/login-page';
+import CardPage from '../../pages/card/card-page';
+import CreatePage from '../../pages/create/create-page';
+import RedactPage from '../../pages/redact/redact-page';
+import RegisterPage from '../../pages/register/register-page';
+import NotFoundPage from '../../pages/not-found/not-found-page';
+import PrivateRoute from '../misc/private-route';
 
 export const routeConfig: RouteObject[] = [
   {
@@ -9,41 +16,60 @@ export const routeConfig: RouteObject[] = [
     element: <Layout />,
     children: [
       {
-        path: AppRoutes.Catalog,
-        element: <CatalogPage />,
+        path: AppRoutes.Login,
+        element: (
+          <PrivateRoute>
+            <LoginPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: AppRoutes.List,
+        element: (
+          <PrivateRoute isAuthNeeded>
+            <ListPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: AppRoutes.Card,
-        children: [
-          {
-            path: ':id',
-            element: <div>Card</div>,
-          },
-          {
-            index: true,
-            element: <div>404</div>,
-          },
-        ],
+        element: (
+          <PrivateRoute isAuthNeeded>
+            <CardPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: AppRoutes.Create,
-        element: <div>Create</div>,
+        element: (
+          <PrivateRoute isAuthNeeded>
+            <CreatePage />
+          </PrivateRoute>
+        ),
       },
       {
         path: AppRoutes.Redact,
-        element: <div>Redact</div>,
-      },
-      {
-        path: AppRoutes.Login,
-        element: <div>Login</div>,
+        element: (
+          <PrivateRoute isAuthNeeded>
+            <RedactPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: AppRoutes.Register,
-        element: <div>Register</div>,
+        element: (
+          <PrivateRoute>
+            <RegisterPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: '*',
-        element: <div>404</div>,
+        element: (
+          <PrivateRoute>
+            <NotFoundPage />
+          </PrivateRoute>
+        ),
       },
     ],
   },

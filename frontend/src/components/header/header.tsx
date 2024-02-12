@@ -1,13 +1,17 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
+import { AppRoutes } from '../../types/app-routes.enum';
+import { useSelector } from 'react-redux';
+import { getUser } from '../../store/slices/user.selectors';
 
 const Header: FC = () => {
-  console.log('Header');
+  const user = useSelector(getUser);
 
   return (
     <header className='header--admin header' id='header'>
       <div className='container'>
         <div className='header__wrapper'>
-          <a className='header__logo logo' href='main.html'>
+          <Link className='header__logo logo' to={AppRoutes.List}>
             <img
               className='logo__img'
               width='70'
@@ -15,7 +19,7 @@ const Header: FC = () => {
               src='./img/svg/logo.svg'
               alt='Логотип'
             />
-          </a>
+          </Link>
           <nav className='main-nav'>
             <ul className='main-nav__list'>
               <li className='main-nav__item'>
@@ -24,17 +28,17 @@ const Header: FC = () => {
                 </a>
               </li>
               <li className='main-nav__item'>
-                <a className='link main-nav__link' href='#'>
+                <Link className='link main-nav__link' to={AppRoutes.List}>
                   Список товаров
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
           <div className='header__container'>
-            <span className='header__user-name'>Имя</span>
-            <a
+            <span className='header__user-name'>{user?.name}</span>
+            <Link
               className='header__link'
-              href='login.html'
+              to={AppRoutes.Login}
               aria-label='Перейти в личный кабинет'
             >
               <svg
@@ -46,7 +50,7 @@ const Header: FC = () => {
                 <use xlinkHref='#icon-account'></use>
               </svg>
               <span className='header__link-text'>Вход</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

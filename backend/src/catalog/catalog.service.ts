@@ -46,7 +46,9 @@ export class CatalogService {
     );
 
     if (!item) {
-      throw new ConflictException('Item with such vendor code does not exist');
+      throw new BadRequestException(
+        'Item with such vendor code does not exist',
+      );
     }
 
     return item;
@@ -90,7 +92,7 @@ export class CatalogService {
       );
     }
 
-    if (dto.vendorCode) {
+    if (dto.vendorCode && dto.vendorCode !== vendorCode) {
       const itemWithNewVendorCode =
         await this.catalogRepository.findByVendorCode(dto.vendorCode, authorId);
 

@@ -1,15 +1,15 @@
 POST  http://localhost:3000/catalog/create HTTP/1.1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzVjZmZiMmE0MGQ5NjI3YTNlZTNjYyIsImVtYWlsIjoiYm9ic0BnbWFpbC5jb20iLCJuYW1lIjoiYm9vYm9iIiwiaWF0IjoxNzA3NDYyNjUxLCJleHAiOjE3MDc1NDkwNTF9.bufzoFYhxPuhmCkMOfhaixYWptUzf1cf4yTUFKDH7kE
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzRiNzY5ZTgxY2MwMzdmZTQ3NWUyZSIsImVtYWlsIjoiYm9iQGdtYWlsLmNvbSIsIm5hbWUiOiJib29ib2IiLCJpYXQiOjE3MDc3MTg5NTAsImV4cCI6MTcwNzgwNTM1MH0.w2qXEMvfr3rsV0313GQ9mei4eM40K-pgN_Ni-TdhM3g
 Content-Type: application/json
 
 {
     "name": "guitar ele",
     "description": "a musical instrument",
-    "price": 1000000,
+    "price": 10000,
     "imageUrl": "https://www.google.com",
     "createdAt": "2022", 
-    "type": "acoustic",
-    "vendorCode": "23fdkldd",
+    "type": "ukulele",
+    "vendorCode": "123293",
     "numberOfStrings": 12
 }
 
