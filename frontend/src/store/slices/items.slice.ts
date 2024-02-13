@@ -9,6 +9,7 @@ import {
   getItemsAction,
   updateItemAction,
 } from '../api-actions/items-action';
+import { ITEM_LIMIT } from '../../app.const';
 
 const initialState = {
   items: [],
@@ -16,7 +17,7 @@ const initialState = {
   total: 0,
   query: {
     page: 0,
-    limit: 7,
+    limit: ITEM_LIMIT,
     sortType: SortType.CreatedAt,
     sortDirection: SortDirection.Asc,
     filterGuitar: [] as GuitarType[],

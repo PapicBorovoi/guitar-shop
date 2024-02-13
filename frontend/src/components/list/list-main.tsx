@@ -14,6 +14,7 @@ import {
 import ListItem from './list-item';
 import { getItemsAction } from '../../store/api-actions/items-action';
 import { range } from '../../util/common';
+import { MAX_SHOWN_PAGES_PAGINATION } from '../../app.const';
 
 const ListMain: FC = () => {
   const total = useAppSelector(getTotal);
@@ -27,7 +28,7 @@ const ListMain: FC = () => {
   const totalPages = Math.ceil(total / limit);
 
   let startPage: number;
-  switch (page % 3) {
+  switch (page % MAX_SHOWN_PAGES_PAGINATION) {
     case 0:
       startPage = page;
       break;
@@ -38,7 +39,10 @@ const ListMain: FC = () => {
       startPage = page - 2;
       break;
   }
-  const pages = totalPages - startPage < 3 ? totalPages - startPage : 3;
+  const pages =
+    totalPages - startPage < MAX_SHOWN_PAGES_PAGINATION
+      ? totalPages - startPage
+      : MAX_SHOWN_PAGES_PAGINATION;
   const rangeArray = range(pages, startPage);
 
   useEffect(() => {
@@ -98,7 +102,7 @@ const ListMain: FC = () => {
                   </a>
                 </li>
               ))}
-              {startPage + 3 >= totalPages ? null : (
+              {startPage + MAX_SHOWN_PAGES_PAGINATION >= totalPages ? null : (
                 <li
                   className='pagination__page pagination__page--next'
                   id='next'
@@ -107,7 +111,10 @@ const ListMain: FC = () => {
                     className='link pagination__page-link'
                     onClick={() => {
                       dispatch(
-                        getItemsAction({ ...query, page: startPage + 3 })
+                        getItemsAction({
+                          ...query,
+                          page: startPage + MAX_SHOWN_PAGES_PAGINATION,
+                        })
                       );
                     }}
                   >
