@@ -61,6 +61,11 @@ const CreateForm: FC = () => {
 
   const handleFileChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const file = evt.target.files?.[0];
+
+    if (file?.type.split('/')[0] !== 'image') {
+      return;
+    }
+
     if (file) {
       const formData = new FormData();
       formData.append('file', file);
