@@ -5,12 +5,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
 import { getMongoConnectionUri } from './shared/utils/common';
 import { CatalogModule } from './catalog/catalog.module';
+import { FileModule } from './file/file.module';
 
 @Module({
   imports: [
     ConfigAppModule,
     UserModule,
     CatalogModule,
+    FileModule,
     MongooseModule.forRootAsync({
       useFactory: async (config: ConfigService) => {
         return {
