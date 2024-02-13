@@ -7,4 +7,5 @@ export const ApiRoutes = {
   GetItem: (vendorCode: string) => `/catalog/${vendorCode}`,
   UpdateItem: (vendorCode: string) => `/catalog/${vendorCode}`,
   GetItems: '/catalog/list',
+  UploadImage: '/file/upload',
 } as const;

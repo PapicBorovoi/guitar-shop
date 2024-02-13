@@ -29,8 +29,16 @@ const CardMain: FC<{ item: Item }> = ({ item }) => {
         <div className='product-container'>
           <img
             className='product-container__img'
-            src='img/content/catalog-product-1.png'
-            srcSet='img/content/catalog-product-1@2x.png 2x'
+            src={
+              item.imageUrl !== ''
+                ? item.imageUrl
+                : 'img/content/catalog-product-1.png'
+            }
+            srcSet={
+              item.imageUrl !== ''
+                ? item.imageUrl
+                : 'img/content/catalog-product-1@2x.png 2x'
+            }
             width='90'
             height='235'
             alt=''

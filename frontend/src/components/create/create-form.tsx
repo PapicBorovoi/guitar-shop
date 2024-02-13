@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
 import { getItem } from '../../store/slices/items.selectors';
 import { GuitarType, Item, StringsNumber } from '../../types/item.type';
@@ -7,6 +7,7 @@ import { AppRoutes } from '../../types/app-routes.enum';
 import {
   createItemAction,
   updateItemAction,
+  uploadImageAction,
 } from '../../store/api-actions/items-action';
 import dayjs from 'dayjs';
 import RadioInput from './radio-input';
@@ -37,16 +38,78 @@ const CreateForm: FC = () => {
     setForm({ ...form, numberOfStrings: +e.target.value as StringsNumber });
   };
 
+  useEffect(() => {
+    const clickHandler = (evt: Event) => {
+      if (evt.target instanceof HTMLElement) {
+        if (evt.target.closest('.button-change')) {
+          evt.stopPropagation();
+          document.getElementById('input--file')?.click();
+        }
+      }
+    };
+
+    document
+      .getElementById('button-change')
+      ?.addEventListener('click', clickHandler);
+
+    return () => {
+      document
+        .getElementById('button-change')
+        ?.removeEventListener('click', clickHandler);
+    };
+  }, []);
+
+  const handleFileChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    const file = evt.target.files?.[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        dispatch(uploadImageAction(formData)).then((data) => {
+          if (data.meta.requestStatus === 'fulfilled') {
+            setForm({
+              ...form,
+              imageUrl: (data.payload as { url: string }).url,
+            });
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   return (
     <form className='add-item__form' action='#' method='get'>
       <div className='add-item__form-left'>
         <div className='edit-item-image add-item__form-image'>
-          <div className='edit-item-image__image-wrap'></div>
+          <div className='edit-item-image__image-wrap'>
+            {form.imageUrl && (
+              <img src={form.imageUrl} className='edit-item-image__image' />
+            )}
+          </div>
           <div className='edit-item-image__btn-wrap'>
-            <button className='button button--small button--black-border edit-item-image__btn'>
+            <button
+              className='button button--small button--black-border edit-item-image__btn button-change'
+              id='button-change'
+              type='button'
+            >
+              <input
+                type='file'
+                id='input--file'
+                style={{ visibility: 'hidden', height: 0, width: 0 }}
+                onChange={handleFileChange}
+              />
               {item ? 'Изменить' : 'Добавить'}
             </button>
-            <button className='button button--small button--black-border edit-item-image__btn'>
+            <button
+              className='button button--small button--black-border edit-item-image__btn'
+              type='button'
+              onClick={() => {
+                setForm({ ...form, imageUrl: '' });
+              }}
+            >
               Удалить
             </button>
           </div>

@@ -76,3 +76,16 @@ export const updateItemAction = createAsyncThunk<
   );
   return response.data;
 });
+
+export const uploadImageAction = createAsyncThunk<
+  string,
+  FormData,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('uploadImage', async (image, { extra: api }) => {
+  const response = await api.post<string>(ApiRoutes.UploadImage, image);
+  return response.data;
+});

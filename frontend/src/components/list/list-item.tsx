@@ -21,8 +21,16 @@ const ListItem: FC<ListItemProps> = ({ item }) => {
     <li className='catalog-item'>
       <div className='catalog-item__data'>
         <img
-          src='img/content/catalog-product-1.png'
-          srcSet='img/content/catalog-product-1@2x.png 2x'
+          src={
+            item.imageUrl !== ''
+              ? item.imageUrl
+              : 'img/content/catalog-product-1.png'
+          }
+          srcSet={
+            item.imageUrl !== ''
+              ? item.imageUrl
+              : 'img/content/catalog-product-1@2x.png 2x'
+          }
           width='36'
           height='93'
           alt='Картинка гитары'
