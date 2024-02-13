@@ -80,7 +80,8 @@ const CreateForm: FC = () => {
           }
         });
       } catch (error) {
-        console.error(error);
+        // eslint-disable-next-line no-console
+        console.error('Error while uploading image', error);
       }
     }
   };
