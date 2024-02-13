@@ -13,7 +13,7 @@ export const checkAuthAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('checkAuth', async (_arg, { extra: api }) => {
+>('user/checkAuth', async (_arg, { extra: api }) => {
   const response = await api.get<User>(ApiRoutes.Check);
   return response.data;
 });
@@ -26,7 +26,7 @@ export const registerAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('register', async (user, { extra: api }) => {
+>('user/register', async (user, { extra: api }) => {
   const response = await api.post<User>(ApiRoutes.Register, user);
   setToken(response.data.accessToken);
   return response.data;
@@ -40,7 +40,7 @@ export const loginAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('login', async (user, { extra: api }) => {
+>('user/login', async (user, { extra: api }) => {
   const response = await api.post<User>(ApiRoutes.Login, user);
   setToken(response.data.accessToken);
   return response.data;

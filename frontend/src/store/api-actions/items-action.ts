@@ -13,7 +13,7 @@ export const createItemAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('createItem', async (item, { extra: api }) => {
+>('items/createItem', async (item, { extra: api }) => {
   const response = await api.post<Item>(ApiRoutes.CreateItem, item);
   return response.data;
 });
@@ -26,7 +26,7 @@ export const deleteItemAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('deleteItem', async (vendorCode, { extra: api }) => {
+>('items/deleteItem', async (vendorCode, { extra: api }) => {
   const response = await api.delete<Item>(ApiRoutes.DeleteItem(vendorCode));
   return response.data;
 });
@@ -39,7 +39,7 @@ export const getItemAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('getItem', async (vendorCode, { extra: api }) => {
+>('items/getItem', async (vendorCode, { extra: api }) => {
   const response = await api.get<Item>(ApiRoutes.GetItem(vendorCode));
   return response.data;
 });
@@ -52,7 +52,7 @@ export const getItemsAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('getItems', async (query, { extra: api }) => {
+>('items/getItems', async (query, { extra: api }) => {
   const response = await api.get<{
     items: Item[];
     page: number;
@@ -69,7 +69,7 @@ export const updateItemAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('updateItem', async (item, { extra: api }) => {
+>('items/updateItem', async (item, { extra: api }) => {
   const response = await api.patch<Item>(
     ApiRoutes.UpdateItem(item.oldVendorCode),
     item.item
@@ -85,7 +85,7 @@ export const uploadImageAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('uploadImage', async (image, { extra: api }) => {
+>('items/uploadImage', async (image, { extra: api }) => {
   const response = await api.post<string>(ApiRoutes.UploadImage, image);
   return response.data;
 });
