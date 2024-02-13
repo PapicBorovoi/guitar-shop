@@ -18,7 +18,7 @@ const initialState = {
     page: 0,
     limit: 7,
     sortType: SortType.CreatedAt,
-    sortDirection: SortDirection.Desc,
+    sortDirection: SortDirection.Asc,
     filterGuitar: [] as GuitarType[],
     filterString: [] as StringsNumber[],
   },

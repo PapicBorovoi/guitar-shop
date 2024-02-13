@@ -16,8 +16,6 @@ export class UserModel extends Document {
 
   @Prop({ required: true })
   public passwordHash: string;
-
-  public id?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserModel);
